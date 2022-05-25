@@ -1,0 +1,74 @@
+{
+	"name": "esbuild-plugin-sass-custom",
+	"version": "1.0.1",
+	"description": "Plugin for esbuild to support SASS styles",
+	"main": "index.js",
+	"types": "index.d.ts",
+	"scripts": {
+		"all": "npm-run-all --serial --print-label",
+		"build": "pnpm exec tsc",
+		"test:prepare": "pnpm exec pack-to-folder --renameTo=.npm-package --forceRewrite",
+		"test:unit": "pnpm exec tape \"tests/*.js\"",
+		"test:clean": "pnpm exec rimraf .npm-package",
+		"test": "pnpm run all build test:*",
+		"prepare": "pnpm run build"
+	},
+	"author": {
+		"name": "Nikolai Mavrenkov",
+		"email": "koluch@koluch.ru",
+		"url": "koluch.ru"
+	},
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/koluch/esbuild-plugin-sass.git"
+	},
+	"keywords": [
+		"esbuild",
+		"plugin",
+		"sass"
+	],
+	"dependencies": {
+		"css-tree": "1.1.3",
+		"fs-extra": "10.0.0",
+		"sass": "1.47.0",
+		"tmp": "0.2.1"
+	},
+	"peerDependencies": {
+		"esbuild": ">=0.11.14"
+	},
+	"devDependencies": {
+		"@types/css-tree": "1.0.7",
+		"@types/fs-extra": "9.0.13",
+		"@types/node": "14.14.35",
+		"@types/sass": "1.43.1",
+		"@types/tmp": "0.2.3",
+		"esbuild": "0.14.10",
+		"husky": "7.0.4",
+		"lint-staged": "12.1.7",
+		"npm-run-all": "4.1.5",
+		"pack-to-folder": "1.0.0",
+		"prettier": "2.5.1",
+		"rimraf": "3.0.2",
+		"tape": "5.4.0",
+		"typescript": "4.5.4"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pnpm exec lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"npx prettier --write"
+		]
+	},
+	"files": [
+		"index.js",
+		"index.d.ts",
+		"index.d.ts.map",
+		"internals/*.js",
+		"internals/*.d.ts",
+		"internals/*.d.ts.map"
+	]
+}

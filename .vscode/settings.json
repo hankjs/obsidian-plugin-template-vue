@@ -1,0 +1,68 @@
+{
+    "typescript.format.semicolons": "insert",
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "typescript.preferences.quoteStyle": "double",
+    "typescript.locale": "zh-CN",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[vue]": {},
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "prettier.configPath": ".prettierrc",
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            "wrap_attributes": "force-expand-multiline"
+        },
+        "prettyhtml": {
+            "printWidth": 100,
+            "singleQuote": false,
+            "wrapAttributes": false,
+            "sortAttributes": false
+        }
+    },
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    "cSpell.words": [
+        "activable",
+        "Biao",
+        "CDSC",
+        "datas",
+        "datasheets",
+        "docgen",
+        "microdiff",
+        "Pingying",
+        "qiming",
+        "scripthost",
+        "sortablejs",
+        "userid",
+        "zhao"
+    ],
+    "editor.formatOnSave": true,
+    "emmet.includeLanguages": {
+        "javascriptreact": "html",
+        "typescriptreact": "html"
+    }
+}
