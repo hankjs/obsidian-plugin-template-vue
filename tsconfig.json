@@ -20,7 +20,8 @@
             "ES7"
         ],
         "types": [
-            "lodash"
+            "lodash",
+            "moment"
         ]
     },
     "include": [
