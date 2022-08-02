@@ -1,22 +1,22 @@
 import update, { Spec } from "immutability-helper";
 import { App } from "obsidian";
 import { createApp } from "vue";
-import { DEFAULT_SETTINGS } from "src/default-settings";
-import { GanttPlugin, GanttSettings } from "src/gantt.type";
+import { DEFAULT_SETTINGS } from "src/default_settings";
+import { ObVuePlugin, ObVueSettings } from "src/obsidian_vue.type";
 import { SettingsManagerConfig } from "./Setting";
 import Hello from "src/components/Hello.vue";
 
 export class SettingsManager {
   app: App;
-  plugin: GanttPlugin;
+  plugin: ObVuePlugin;
   config: SettingsManagerConfig;
-  settings: GanttSettings;
+  settings: ObVueSettings;
   applyDebounceTimer: number = 0;
 
   constructor(
-    plugin: GanttPlugin,
+    plugin: ObVuePlugin,
     config: SettingsManagerConfig,
-    settings: GanttSettings
+    settings: ObVueSettings
   ) {
     this.app = plugin.app;
     this.plugin = plugin;
@@ -24,7 +24,7 @@ export class SettingsManager {
     this.settings = settings;
   }
 
-  applySettingsUpdate(spec: Spec<GanttSettings>) {
+  applySettingsUpdate(spec: Spec<ObVueSettings>) {
     clearTimeout(this.applyDebounceTimer);
 
     this.applyDebounceTimer = window.setTimeout(() => {
@@ -33,11 +33,11 @@ export class SettingsManager {
     }, 200);
   }
 
-  getSetting(key: keyof GanttSettings) {
+  getSetting(key: keyof ObVueSettings) {
     return this.settings[key];
   }
 
-  getDefaultSetting(key: keyof GanttSettings) {
+  getDefaultSetting(key: keyof ObVueSettings) {
     return DEFAULT_SETTINGS[key];
   }
 
@@ -46,10 +46,10 @@ export class SettingsManager {
 
     containerEl.createEl("h2", { text: "Settings for Gantt plugin." });
 
-    this.uiGanttSettings(containerEl);
+    this.uiObVueSettings(containerEl);
   }
 
-  uiGanttSettings(containerEl: HTMLElement) {
+  uiObVueSettings(containerEl: HTMLElement) {
     createApp(Hello).mount(containerEl);
   }
 }

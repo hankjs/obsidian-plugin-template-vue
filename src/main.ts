@@ -1,19 +1,45 @@
 import { Plugin } from "obsidian";
+import { App } from "vue";
+
+import { createPiniaApp } from "src/vue";
+
+import { DEFAULT_SETTINGS } from "./default_settings";
+import { ISetting } from "./obsidian_vue.type";
+import { ObVueSettingsTab } from "./setting/Setting";
+
+import { exampleStatusBar } from "./status-bar/example";
 import { exampleCommand } from "./command/example";
 import { exampleComplexCommand } from "./command/example-complex";
 import { exampleEditorCommand } from "./command/example-editor";
 import { exampleRibbon } from "./ribbon/example";
-import { GanttSettingsTab } from "./setting/Setting";
-import { DEFAULT_SETTINGS } from "./default-settings";
-import { exampleStatusBar } from "./status-bar/example";
-import { GanttSettings, IGantt } from "./gantt.type";
+import { useDefaultSettingStore } from "./store";
 
-export default class Gantt extends Plugin implements IGantt {
-  settingsTab!: GanttSettingsTab;
-  settings!: GanttSettings;
-
-  async onload() {
-    await this.loadSettings();
+export default class Gantt extends Plugin implements ISetting {
+    settingsTab!: ObVueSettingsTab;
+    settingsStore!: ReturnType<typeof useDefaultSettingStore>;
+    dummyVueApp!: App;
+    basePath!: string;
+  
+    get settings() {
+      return this.settingsStore.settings;
+    }
+  
+    set settings(newSetting: any) {
+      this.settingsStore.reset(newSetting);
+    }
+  
+    async onload() {
+      this.dummyVueApp = createPiniaApp(this);
+      this.settingsStore = useDefaultSettingStore();
+  
+      await this.loadSettings();
+  
+      this.settingsTab = new ObVueSettingsTab(this, {
+        onSettingsChange: async (newSettings) => {
+          this.settings = newSettings;
+          await this.saveSettings();
+        },
+      });
 
     exampleRibbon(this);
     exampleStatusBar(this);
@@ -21,15 +47,6 @@ export default class Gantt extends Plugin implements IGantt {
     exampleCommand(this);
     exampleComplexCommand(this);
     exampleEditorCommand(this);
-
-    this.settingsTab = new GanttSettingsTab(this, {
-      onSettingsChange: async (newSettings) => {
-        this.settings = newSettings;
-        await this.saveSettings();
-      },
-    });
-
-    this.addSettingTab(this.settingsTab);
   }
 
   onunload() {}

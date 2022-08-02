@@ -1,16 +1,16 @@
 import { PluginSettingTab } from "obsidian";
-import { GanttPlugin, GanttSettings } from "src/gantt.type";
+import { ObVuePlugin, ObVueSettings } from "src/obsidian_vue.type";
 import { SettingsManager } from "./SettingsManager";
 
 export interface SettingsManagerConfig {
-  onSettingsChange: (newSettings: GanttSettings) => void;
+  onSettingsChange: (newSettings: ObVueSettings) => void;
 }
 
-export class GanttSettingsTab extends PluginSettingTab {
-  plugin: GanttPlugin;
+export class ObVueSettingsTab extends PluginSettingTab {
+  plugin: ObVuePlugin;
   settingsManager: SettingsManager;
 
-  constructor(plugin: GanttPlugin, config: SettingsManagerConfig) {
+  constructor(plugin: ObVuePlugin, config: SettingsManagerConfig) {
     super(plugin.app, plugin);
     this.plugin = plugin;
     this.settingsManager = new SettingsManager(plugin, config, plugin.settings);
