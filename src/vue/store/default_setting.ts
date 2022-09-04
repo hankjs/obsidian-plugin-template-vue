@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ObVueSettings } from "src/obsidian_vue.type";
+import { ObVueSettings } from "../../obsidian_vue.type";
 
 export interface DefaultSettingState {
   settings: ObVueSettings;

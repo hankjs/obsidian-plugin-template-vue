@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { App } from "obsidian";
-import { ObVuePlugin } from "src/obsidian_vue.type";
+import { ObVuePlugin } from "../../obsidian_vue.type";
 
 export interface ObsidianState {
   app: App;

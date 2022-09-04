@@ -1,5 +1,5 @@
 import { PluginSettingTab } from "obsidian";
-import { ObVuePlugin, ObVueSettings } from "src/obsidian_vue.type";
+import { ObVuePlugin, ObVueSettings } from "../obsidian_vue.type";
 import { SettingsManager } from "./SettingsManager";
 
 export interface SettingsManagerConfig {

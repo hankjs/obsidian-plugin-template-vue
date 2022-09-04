@@ -12,34 +12,34 @@ import { exampleCommand } from "./command/example";
 import { exampleComplexCommand } from "./command/example-complex";
 import { exampleEditorCommand } from "./command/example-editor";
 import { exampleRibbon } from "./ribbon/example";
-import { useDefaultSettingStore } from "./store";
+import { useDefaultSettingStore } from "./vue/store";
 
-export default class Gantt extends Plugin implements ISetting {
-    settingsTab!: ObVueSettingsTab;
-    settingsStore!: ReturnType<typeof useDefaultSettingStore>;
-    dummyVueApp!: App;
-    basePath!: string;
-  
-    get settings() {
-      return this.settingsStore.settings;
-    }
-  
-    set settings(newSetting: any) {
-      this.settingsStore.reset(newSetting);
-    }
-  
-    async onload() {
-      this.dummyVueApp = createPiniaApp(this);
-      this.settingsStore = useDefaultSettingStore();
-  
-      await this.loadSettings();
-  
-      this.settingsTab = new ObVueSettingsTab(this, {
-        onSettingsChange: async (newSettings) => {
-          this.settings = newSettings;
-          await this.saveSettings();
-        },
-      });
+export default class ObsidianVueTemplate extends Plugin implements ISetting {
+  settingsTab!: ObVueSettingsTab;
+  settingsStore!: ReturnType<typeof useDefaultSettingStore>;
+  dummyVueApp!: App;
+  basePath!: string;
+
+  get settings() {
+    return this.settingsStore.settings;
+  }
+
+  set settings(newSetting: any) {
+    this.settingsStore.reset(newSetting);
+  }
+
+  async onload() {
+    this.dummyVueApp = createPiniaApp(this);
+    this.settingsStore = useDefaultSettingStore();
+
+    await this.loadSettings();
+
+    this.settingsTab = new ObVueSettingsTab(this, {
+      onSettingsChange: async (newSettings) => {
+        this.settings = newSettings;
+        await this.saveSettings();
+      },
+    });
 
     exampleRibbon(this);
     exampleStatusBar(this);

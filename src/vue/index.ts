@@ -1,11 +1,13 @@
 import { App, Component, createApp } from "vue";
-import { GanttPlugin } from "src/types";
-import { useObsidianStore } from "src/store";
-import { pinia } from "src/vue/pinia";
-import Dummy from "src/components/Dummy.vue";
+import { createPinia } from "pinia";
+import { ObVuePlugin } from "../obsidian_vue.type";
+import { useObsidianStore } from "./store";
+import Dummy from "./components/Dummy.vue";
+
+export const pinia = createPinia();
 
 // (rootComponent: Component, rootProps?: Data | null) => App<HostElement>
-export function createPiniaApp(plugin: GanttPlugin): App {
+export function createPiniaApp(plugin: ObVuePlugin): App {
   const app = createApp(Dummy);
 
   app.use(pinia);
